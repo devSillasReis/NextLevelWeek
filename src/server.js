@@ -1,3 +1,4 @@
+// Dados
 const proffys = [
     {
         name: 'Gabriel Fróes',
@@ -24,21 +25,48 @@ const proffys = [
     }
 ]
 
+const subjects = [
+    'Artes',
+    'Biologia',
+    'Ciências',
+    'Educação física',
+    'Física',
+    'Geografia',
+    'História',
+    'Matemática',
+    'Português',
+    'Química'
+]
+
+const weekdays = [
+    'Domingo',
+    'Segunda-feira',
+    'Terça-feira',
+    'Quarta-feira',
+    'Quinta-feira',
+    'Sexta-feira',
+    'Sábado'
+]
+
+// Funcionalidades
 function pageLanding(req, res) {
     return res.render('index.html')
 }
 
 function pageStudy(req, res) {
-    return res.render('study.html')
+    const filters = req.query
+    return res.render('study.html', { proffys, filters, subjects, weekdays })
 }
 
 function pageGiveClasses(req, res) {
     return res.render('give-classes.html')
 }
 
+// Servidor
 const express = require('express')
 const server = express()
 
+// Template engine
 // Configurando nunjucks
 const nunjucks = require('nunjucks')
 nunjucks.configure('src/views', {
@@ -46,7 +74,7 @@ nunjucks.configure('src/views', {
     noCache: true
 })
 
-
+//Início e configuração do servidor
 server
 // Configurando arquivos estáticos
 .use(express.static('public'))

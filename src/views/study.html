@@ -33,16 +33,11 @@
                         <label for="subject">Matéria</label>
                         <select name="subject" id="subject">
                             <option value="" disabled="" hidden="">Selecione uma opção</option>
-                            <option value="1">Artes</option>
-                            <option value="2">Biologia</option>
-                            <option value="3">Ciências</option>
-                            <option value="4">Educação física</option>
-                            <option value="5">Física</option>
-                            <option value="6">Geografia</option>
-                            <option value="7">História</option>
-                            <option value="8">Matemática</option>
-                            <option value="9">Português</option>
-                            <option value="10">Química</option>
+
+                            {%for subject in subjects%}
+                                <option value="{{loop.index}}" {{"selected" if filters.subject == loop.index}}>{{subject}}</option>
+                            {%endfor%}
+
                         </select>
                     </div>
 
@@ -50,19 +45,17 @@
                         <label for="weekday">Dia da semana</label>
                         <select name="weekday" id="weekday">
                             <option value="" disabled="" hidden="">Selecione uma opção</option>
-                            <option value="0">Domingo</option>
-                            <option value="1">Segunda-feira</option>
-                            <option value="2">Terça-feira</option>
-                            <option value="3">Quarta-feira</option>
-                            <option value="4">Quinta-feira</option>
-                            <option value="5">Sexta-feira</option>
-                            <option value="6">Sábado</option>
+                            
+                            {%for weekday in weekdays%}
+                                <option value="{{loop.index0}}" {{"selected" if filters.weekday == loop.index0}}>{{weekday}}</option>
+                            {%endfor%}
+                            
                         </select>
                     </div>
 
                     <div class="input-block">
                         <label for="time">Hora</label>
-                        <input name="time" id="time" type="time">
+                        <input name="time" id="time" type="time" value="{{filters.time}}">
                     </div>
 
                     <button type="submit">Filtrar</button>
@@ -71,49 +64,30 @@
         </header>
 
         <main>
-            <article class="teacher-item">
-                <header>
-                    <img 
-                        src="https://media-exp1.licdn.com/dms/image/C4D03AQFlGOnXxru5zw/profile-displayphoto-shrink_800_800/0?e=1602115200&v=beta&t=HoxYd9YfBvnLMrKYr2dg7EH3kmkU0vcbMFTLUS6QVi4" 
-                        alt="Gabriel Fróes">
-                    <div>
-                        <strong>Gabriel Fróes</strong>
-                        <span>Matemática</span>
-                    </div>
-                </header>
+            {%for proffy in proffys%}
+                <article class="teacher-item">
+                    <header>
+                        <img 
+                            src="{{proffy.avatar}}" 
+                            alt="{{proffy.name}}">
+                        <div>
+                            <strong>{{proffy.name}}</strong>
+                            <span>{{proffy.subject}}</span>
+                        </div>
+                    </header>
+                
+                    <p>{{proffy.bio}}</p>
+                
+                    <footer>
+                        <p>Preço/hora<strong>R$ {{proffy.cost}}</strong>
+                        </p>
+                        <a href="https://api.whatsapp.com/send?phone={{proffy.whatsapp}}&text=Tenho Interesse na sua aula de {{proffy.subject}}, {{proffy.name}}" class="button" target="_blank">
+                            <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
+                        </a>
+                    </footer>
+                </article>
+            {%endfor%}
             
-                <p>Conhecedor de inúmeros termos e tecnologias.<br><br>Toda semana explico um novo termo, uma tecnologia ou até uma simples palavrinha, utilizada por nós nesse incrível mundo da matemática.</p>
-            
-                <footer>
-                    <p>Preço/hora<strong>R$ 20,00</strong>
-                    </p>
-                    <button type="button">
-                        <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
-                    </button>
-                </footer>
-            </article>
-
-            <article class="teacher-item">
-                <header>
-                    <img 
-                        src="https://avatars2.githubusercontent.com/u/6643122?s=460&u=1e9e1f04b76fb5374e6a041f5e41dce83f3b5d92&v=4" 
-                        alt="Mayk Brito">
-                    <div>
-                        <strong>Mayk Brito</strong>
-                        <span>Educação Física</span>
-                    </div>
-                </header>
-            
-                <p>Instrutor de Educação Física para iniciantes, minha missão de vida é levar saúde e contribuir para o crescimento de quem se interessar.<br><br>Comecei a minha jornada profissional em 2001, quando meu pai me deu dois alteres de 32kg com a seguinte condição: "Aprenda a fazer dinheiro com isso!"</p>
-            
-                <footer>
-                    <p>Preço/hora<strong>R$ 20,00</strong>
-                    </p>
-                    <button type="button">
-                        <img src="/images/icons/whatsapp.svg" alt="Whatsapp">Entrar em contato
-                    </button>
-                </footer>
-            </article>
         </main>
 
 
