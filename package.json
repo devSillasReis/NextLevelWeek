@@ -1,0 +1,27 @@
+{
+  "name": "NextLevelWeek",
+  "version": "1.0.0",
+  "description": "Repositório criado durante a Next Level Week #2 da Rocket Seat para desenvolvimento do projeto.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devSillasReis/NextLevelWeek.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devSillasReis/NextLevelWeek/issues"
+  },
+  "homepage": "https://github.com/devSillasReis/NextLevelWeek#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nunjucks": "^3.2.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
